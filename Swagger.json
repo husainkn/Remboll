@@ -1,0 +1,706 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Taxonomy API",
+    "description": "DEFAULT",
+    "version": "0.0.1"
+  },
+  "host": "api-dev.ramboll.com",
+  "basePath": "/maconomy/v2/containers/gerp/ramboll:find_c05_jobstaxonomyfilter",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/filter": {
+      "post": {
+        "tags": [
+          "Filter"
+        ],
+        "summary": "Find job",
+        "description": "Find job",
+        "operationId": "findjob",
+        "consumes": [],
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "Accept",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          },
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "description": "Ocp-Apim-Subscription-Key",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "limit": {
+                  "type": "integer",
+                  "example": 25
+                },
+                "offset": {
+                  "type": "integer",
+                  "example": 0
+                },
+                "fields": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "projectnumber",
+                      "projectname",
+                      "streamidcreationdate",
+                      "projectstartdate",
+                      "expectedenddate",
+                      "closed",
+                      "projectcloseddate",
+                      "mainprojectmanagername",
+                      "mainprojectmanageremail",
+                      "mainprojectmanagercode",
+                      "market",
+                      "sector",
+                      "service",
+                      "currency",
+                      "clientname",
+                      "clientcode",
+                      "fixedpricecurrency",
+                      "fixedpriceenterprise",
+                      "streamid"
+                    ]
+                  },
+                  "example": [
+                    "projectnumber",
+                    "projectname",
+                    "streamidcreationdate",
+                    "projectstartdate",
+                    "expectedenddate",
+                    "closed",
+                    "projectcloseddate",
+                    "mainprojectmanagername",
+                    "mainprojectmanageremail",
+                    "mainprojectmanagercode",
+                    "market",
+                    "sector",
+                    "service",
+                    "currency",
+                    "clientname",
+                    "clientcode",
+                    "fixedpricecurrency",
+                    "fixedpriceenterprise",
+                    "streamid"
+                  ]
+                },
+                "restriction": {
+                  "type": "string",
+                  "example": "streamid=207"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ContainerResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "oAuth": [
+              "resource",
+              "scope"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "FindjobRequest": {
+      "description": "Model for FindjobRequest",
+      "required": [
+        "fields",
+        "limit",
+        "offset",
+        "restriction"
+      ],
+      "properties": {
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offset": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "restriction": {
+          "type": "string"
+        }
+      }
+    },
+    "ContainerResponse": {
+      "description": "Model for ContainerResponse",
+      "required": [
+        "meta"
+      ],
+      "properties": {
+        "meta": {
+          "$ref": "#/definitions/Meta"
+        }
+      }
+    },
+    "Panes": {
+      "description": "Model for Panes",
+      "required": [
+        "filter"
+      ],
+      "properties": {
+        "filter": {
+          "description": "Model for Filter",
+          "required": [
+            "links"
+          ],
+          "properties": {
+            "links": {
+              "description": "Model for Links2",
+              "required": [],
+              "properties": {}
+            },
+            "meta": {
+              "description": "Model for Meta2",
+              "required": [
+                "paneName"
+              ],
+              "properties": {
+                "paneName": {
+                  "type": "string",
+                  "x-example": "filter"
+                },
+                "rowCount": {
+                  "type": "integer",
+                  "format": "int32",
+                  "x-example": "25"
+                },
+                "rowOffset": {
+                  "type": "integer",
+                  "format": "int32",
+                  "x-example": "0"
+                }
+              }
+            },
+            "records": {
+              "type": "array",
+              "items": {
+                "description": "Model for Records",
+                "required": [
+                  "data"
+                ],
+                "properties": {
+                  "data": {
+                    "description": "Model for Data",
+                    "required": [
+                      "projectnumber"
+                    ],
+                    "properties": {
+                      "projectnumber": {
+                        "type": "string"
+                      },
+                      "clientcode": {
+                        "type": "string"
+                      },
+                      "clientname": {
+                        "type": "string"
+                      },
+                      "closed": {
+                        "type": "string"
+                      },
+                      "streamidcreationdate": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "currency": {
+                        "type": "string",
+                        "x-example": "eur"
+                      },
+                      "expectedendingdate": {
+                        "type": "string",
+                        "format": "date",
+                        "x-example": "2024-12-31"
+                      },
+                      "fixedpricecurrency": {
+                        "type": "integer",
+                        "format": "int32",
+                        "x-example": "2106776853"
+                      },
+                      "fixedpriceenterprise": {
+                        "type": "integer",
+                        "format": "int32",
+                        "x-example": "2106776853"
+                      },
+                      "mainprojectmanagercode": {
+                        "type": "string",
+                        "x-example": "klprm"
+                      },
+                      "mainprojectmanageremail": {
+                        "type": "string"
+                      },
+                      "mainprojectmanagername": {
+                        "type": "string",
+                        "x-example": "Susanne Kalmar Pedersen"
+                      },
+                      "market": {
+                        "type": "string",
+                        "x-example": "Transport"
+                      },
+                      "projectcloseddate": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "projectname": {
+                        "type": "string"
+                      },
+                      "projectstartdate": {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      "sector": {
+                        "type": "string",
+                        "x-example": "Transportation/ Mobility/ Urban Development"
+                      },
+                      "service": {
+                        "type": "string",
+                        "x-example": "Tunnel engineering"
+                      },
+                      "streamid": {
+                        "type": "integer",
+                        "format": "int32",
+                        "x-example": "25"
+                      }
+                    }
+                  },
+                  "links": {
+                    "description": "Model for Links",
+                    "required": [],
+                    "properties": {}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Filter": {
+      "description": "Model for Filter",
+      "required": [
+        "links"
+      ],
+      "properties": {
+        "links": {
+          "description": "Model for Links2",
+          "required": [],
+          "properties": {}
+        },
+        "meta": {
+          "description": "Model for Meta2",
+          "required": [
+            "paneName"
+          ],
+          "properties": {
+            "paneName": {
+              "type": "string",
+              "x-example": "filter"
+            },
+            "rowCount": {
+              "type": "integer",
+              "format": "int32",
+              "x-example": "25"
+            },
+            "rowOffset": {
+              "type": "integer",
+              "format": "int32",
+              "x-example": "0"
+            }
+          }
+        },
+        "records": {
+          "type": "array",
+          "items": {
+            "description": "Model for Records",
+            "required": [
+              "data"
+            ],
+            "properties": {
+              "data": {
+                "description": "Model for Data",
+                "required": [
+                  "createddate"
+                ],
+                "properties": {
+                  						"projectnumber": {
+                            "type": "string"
+                          },
+						  "clientcode": {
+                            "type": "string"
+                          },
+						  "clientname": {
+                            "type": "string"
+                          },
+						  "closed": {
+                            "type":"string" 
+                          },
+                          "streamidcreationdate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "currency": {
+                            "type": "string",
+                            "x-example": "eur"
+                          },                         
+                          "expectedendingdate": {
+                            "type": "string",
+                            "format": "date",
+                            "x-example": "2024-12-31"
+                          },
+                          "fixedpricecurrency": {
+                            "type": "integer",
+                            "format": "int32",
+                            "x-example": "2106776853"
+                          },
+						  "fixedpriceenterprise": {
+                            "type": "integer",
+                            "format": "int32",
+                            "x-example": "2106776853"
+                          },
+                          "mainprojectmanagercode": {
+                            "type": "string",
+                            "x-example": "klprm"
+                          },
+                          "mainprojectmanageremail": {
+                            "type": "string"
+                          },
+                          "mainprojectmanagername": {
+                            "type": "string",
+                            "x-example": "Susanne Kalmar Pedersen"
+                          },
+                          "market": {
+                            "type": "string",
+                            "x-example": "Transport"
+                          },
+                          "projectcloseddate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "projectname": {
+                            "type": "string"
+                          },                          
+                          "projectstartdate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "sector": {
+                            "type": "string",
+                            "x-example": "Transportation/ Mobility/ Urban Development"
+                          },
+                          "service": {
+                            "type": "string",
+                            "x-example": "Tunnel engineering"
+                          },
+                          "streamid": {
+                            "type": "integer",
+                            "format": "int32",
+                            "x-example": "25"
+                          }
+                }
+              },
+              "links": {
+                "description": "Model for Links",
+                "required": [],
+                "properties": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "Links2": {
+      "description": "Model for Links2",
+      "required": [],
+      "properties": {}
+    },
+    "DataSameKeySomeInstance": {
+      "description": "Model for DataSameKeySomeInstance",
+      "required": [
+        "rel"
+      ],
+      "properties": {
+        "rel": {
+          "type": "string",
+          "x-example": "data:same-key-some-instance"
+        },
+        "template": {
+          "type": "string"
+        }
+      }
+    },
+    "Links": {
+      "description": "Model for Links",
+      "required": [],
+      "properties": {}
+    },
+    "Records": {
+      "description": "Model for Records",
+      "required": [
+        "data"
+      ],
+      "properties": {
+        "data": {
+          "description": "Model for Data",
+          "required": [
+            "createddate"
+          ],
+          "properties": {            
+          		"projectnumber": {
+                            "type": "string"
+                          },
+						  "clientcode": {
+                            "type": "string"
+                          },
+						  "clientname": {
+                            "type": "string"
+                          },
+						  "closed": {
+                            "type":"string" 
+                          },
+                          "streamidcreationdate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "currency": {
+                            "type": "string",
+                            "x-example": "eur"
+                          },                         
+                          "expectedendingdate": {
+                            "type": "string",
+                            "format": "date",
+                            "x-example": "2024-12-31"
+                          },
+                          "fixedpricecurrency": {
+                            "type": "integer",
+                            "format": "int32",
+                            "x-example": "2106776853"
+                          },
+						  "fixedpriceenterprise": {
+                            "type": "integer",
+                            "format": "int32",
+                            "x-example": "2106776853"
+                          },
+                          "mainprojectmanagercode": {
+                            "type": "string",
+                            "x-example": "klprm"
+                          },
+                          "mainprojectmanageremail": {
+                            "type": "string"
+                          },
+                          "mainprojectmanagername": {
+                            "type": "string",
+                            "x-example": "Susanne Kalmar Pedersen"
+                          },
+                          "market": {
+                            "type": "string",
+                            "x-example": "Transport"
+                          },
+                          "projectcloseddate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "projectname": {
+                            "type": "string"
+                          },                          
+                          "projectstartdate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "sector": {
+                            "type": "string",
+                            "x-example": "Transportation/ Mobility/ Urban Development"
+                          },
+                          "service": {
+                            "type": "string",
+                            "x-example": "Tunnel engineering"
+                          },
+                          "streamid": {
+                            "type": "integer",
+                            "format": "int32",
+                            "x-example": "25"
+                          }
+          }
+        },
+        "links": {
+          "description": "Model for Links",
+          "required": [],
+          "properties": {}
+        }
+      }
+    },
+    "Data": {
+      "description": "Model for Data",
+      "required": [
+        "projectnumber"
+      ],
+      "properties": {
+        "projectnumber": {
+          "type": "string"
+        },
+        "clientcode": {
+          "type": "string"
+        },
+        "clientname": {
+          "type": "string"
+        },
+        "closed": {
+          "type": "string"
+        },
+        "streamidcreationdate": {
+          "type": "string",
+          "format": "date"
+        },
+        "currency": {
+          "type": "string",
+          "x-example": "eur"
+        },
+        "expectedendingdate": {
+          "type": "string",
+          "format": "date",
+          "x-example": "2024-12-31"
+        },
+        "fixedpricecurrency": {
+          "type": "integer",
+          "format": "int32",
+          "x-example": "2106776853"
+        },
+        "fixedpriceenterprise": {
+          "type": "integer",
+          "format": "int32",
+          "x-example": "2106776853"
+        },
+        "mainprojectmanagercode": {
+          "type": "string",
+          "x-example": "klprm"
+        },
+        "mainprojectmanageremail": {
+          "type": "string"
+        },
+        "mainprojectmanagername": {
+          "type": "string",
+          "x-example": "Susanne Kalmar Pedersen"
+        },
+        "market": {
+          "type": "string",
+          "x-example": "Transport"
+        },
+        "projectcloseddate": {
+          "type": "string",
+          "format": "date"
+        },
+        "projectname": {
+          "type": "string"
+        },
+        "projectstartdate": {
+          "type": "string",
+          "format": "date"
+        },
+        "sector": {
+          "type": "string",
+          "x-example": "Transportation/ Mobility/ Urban Development"
+        },
+        "service": {
+          "type": "string",
+          "x-example": "Tunnel engineering"
+        },
+        "streamid": {
+          "type": "integer",
+          "format": "int32",
+          "x-example": "25"
+        }
+      }
+    },
+    "Meta2": {
+      "description": "Model for Meta2",
+      "required": [
+        "paneName"
+      ],
+      "properties": {
+        "paneName": {
+          "type": "string",
+          "x-example": "filter"
+        },
+        "rowCount": {
+          "type": "integer",
+          "format": "int32",
+          "x-example": "25"
+        },
+        "rowOffset": {
+          "type": "integer",
+          "format": "int32",
+          "x-example": "0"
+        }
+      }
+    },
+    "Meta": {
+      "description": "Model for Meta",
+      "required": [
+        "containerName"
+      ],
+      "properties": {
+        "containerName": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "oAuth": {
+      "type": "oauth2",
+      "flow": "application",
+      "tokenUrl": "https://login.microsoftonline.com/c8823c91-be81-4f89-b024-6c3dd789c106/oauth2/token",
+      "scopes": {
+        "resource": "25a7c70d-54e5-488f-896e-0de41ad9a088",
+        "scope": "api://25a7c70d-54e5-488f-896e-0de41ad9a088/.default"
+      }
+    }
+  },
+  "security": [
+    {
+      "oAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Filter",
+      "description": "Operations about Filter"
+    },
+    {
+      "name": "Specification",
+      "description": "Operations about Specification"
+    }
+  ]
+}
