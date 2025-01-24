@@ -11,6 +11,55 @@
     "https"
   ],
   "paths": {
+    "/specification": {
+      "get": {
+        "tags": [
+          "Specification"
+        ],
+        "summary": "0 Specification On {{container}}",
+        "description": "0 Specification On {{container}}",
+        "operationId": "_0SpecificationOnContainer",
+        "parameters": [
+          {
+            "name": "Accept",
+            "in": "header",
+            "description": "Accept",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          },
+          {
+            "name": "Maconomy-Warning-Callback",
+            "in": "header",
+            "description": "Maconomy-Warning-Callback",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          },
+          {
+            "name": "Ocp-Apim-Subscription-Key",
+            "in": "header",
+            "description": "Ocp-Apim-Subscription-Key",
+            "required": true,
+            "type": "string",
+            "x-example": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "oAuth": [
+              "resource",
+              "scope"
+            ]
+          }
+        ]
+      }
+    },
     "/filter": {
       "post": {
         "tags": [
@@ -163,10 +212,156 @@
       ],
       "properties": {
         "meta": {
-          "$ref": "#/definitions/Meta"
+          "description": "Model for Meta",
+          "required": [
+            "containerName"
+          ],
+          "properties": {
+            "containerName": {
+              "type": "string"
+            }
+          }
         },
         "panes": {
-          "$ref": "#/definitions/Panes"
+          "description": "Model for Panes",
+          "required": [
+            "filter"
+          ],
+          "properties": {
+            "filter": {
+              "description": "Model for Filter",
+              "required": [
+                "links"
+              ],
+              "properties": {
+                "links": {
+                  "description": "Model for Links2",
+                  "required": [],
+                  "properties": {}
+                },
+                "meta": {
+                  "description": "Model for Meta2",
+                  "required": [
+                    "paneName"
+                  ],
+                  "properties": {
+                    "paneName": {
+                      "type": "string",
+                      "x-example": "filter"
+                    },
+                    "rowCount": {
+                      "type": "integer",
+                      "format": "int32",
+                      "x-example": "25"
+                    },
+                    "rowOffset": {
+                      "type": "integer",
+                      "format": "int32",
+                      "x-example": "0"
+                    }
+                  }
+                },
+                "records": {
+                  "type": "array",
+                  "items": {
+                    "description": "Model for Records",
+                    "required": [
+                      "data"
+                    ],
+                    "properties": {
+                      "data": {
+                        "description": "Model for Data",
+                        "required": [
+                          "projectnumber"
+                        ],
+                        "properties": {
+                        "projectnumber": {
+                            "type": "string"
+                          },
+						  "clientcode": {
+                            "type": "string"
+                          },
+						  "clientname": {
+                            "type": "string"
+                          },
+						  "closed": {
+                            "type":"string" 
+                          },
+                          "streamidcreationdate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "currency": {
+                            "type": "string",
+                            "x-example": "eur"
+                          },                         
+                          "expectedendingdate": {
+                            "type": "string",
+                            "format": "date",
+                            "x-example": "2024-12-31"
+                          },
+                          "fixedpricecurrency": {
+                            "type": "integer",
+                            "format": "int32",
+                            "x-example": "2106776853"
+                          },
+						  "fixedpriceenterprise": {
+                            "type": "integer",
+                            "format": "int32",
+                            "x-example": "2106776853"
+                          },
+                          "mainprojectmanagercode": {
+                            "type": "string",
+                            "x-example": "klprm"
+                          },
+                          "mainprojectmanageremail": {
+                            "type": "string"
+                          },
+                          "mainprojectmanagername": {
+                            "type": "string",
+                            "x-example": "Susanne Kalmar Pedersen"
+                          },
+                          "market": {
+                            "type": "string",
+                            "x-example": "Transport"
+                          },
+                          "projectcloseddate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "projectname": {
+                            "type": "string"
+                          },                          
+                          "projectstartdate": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "sector": {
+                            "type": "string",
+                            "x-example": "Transportation/ Mobility/ Urban Development"
+                          },
+                          "service": {
+                            "type": "string",
+                            "x-example": "Tunnel engineering"
+                          },
+                          "streamid": {
+                            "type": "integer",
+                            "format": "int32",
+                            "x-example": "25"
+                          }
+                        }
+                      },
+                      "links": {
+                        "description": "Model for Links",
+                        "required": [],
+                        "properties": {}
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
