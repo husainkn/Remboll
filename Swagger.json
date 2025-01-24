@@ -164,6 +164,9 @@
       "properties": {
         "meta": {
           "$ref": "#/definitions/Meta"
+        },
+        "panes": {
+          "$ref": "#/definitions/Panes"
         }
       }
     },
